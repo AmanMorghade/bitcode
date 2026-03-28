@@ -1,22 +1,38 @@
-class A{
-    public void show(){
-        System.out.println("i m in show ");
-    }
+class A extends Thread{
 
-    static class B{
-        public void config(){
-            System.out.println("i m in inner class");
+    public void run(){
+        for(int i=0;i<50;i++){
+            System.out.print("A");
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
 
-class classes{
+class B extends Thread{
+    public void run(){
+        for(int i=0;i<50;i++){
+            System.out.print("  B");
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+
+public class classes{
     public static void main(String[] args) {
         A obj = new A();
+        B obj2 = new B();
 
-        obj.show();
-
-        
-
+        // obj2.setPriority(1);
+        // obj.setPriority(10);
+        obj.start();
+        obj2.start();
     }
 }
